@@ -2,7 +2,14 @@ from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 
 # Create a new instance of ChatBot
-chatbot = ChatBot('CustomBot')
+chatbot = ChatBot(
+    'CustomBot',
+    storage_adapter='chatterbot.storage.SQLStorageAdapter',
+    logic_adapters=[
+        'chatterbot.logic.BestMatch'
+    ],
+    database_uri='sqlite:///database.sqlite3'  # Using SQLite as backend
+)
 
 trainer = ListTrainer(chatbot)
 
